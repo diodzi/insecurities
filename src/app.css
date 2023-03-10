@@ -1,8 +1,14 @@
 main {
   display: grid;
   place-items: center;
+  color: white;
+  background-color: #080808;
 }
 
-img {
-  max-width: 50%;
+body {
+  margin: 0;
+}
+
+input[type="file"] {
+  display: none;
 }
