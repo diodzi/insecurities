@@ -1,30 +1,32 @@
 <script>
   import { db } from './firebase.js'
-  
-  import { collection, onSnapshot } from 'firebase/firestore'
+  import { collection, getDocs, onSnapshot, orderBy, query } from 'firebase/firestore'
+
   import Post from './Post.svelte'
   import UploadModal from './UploadModal.svelte'
 
   let posts = []
-  $: sortedPosts = posts.sort((a, b) => a.timestamp < b.timestamp ? 1 : -1)
 
-
-  onSnapshot(collection(db, 'images'), (snapshot) => {
+  onSnapshot(collection(db, 'images'), async (snapshot) => {
     posts = []
-    snapshot.forEach((post) => {
+
+    const q = query(collection(db, 'images'), orderBy('timestamp', 'desc'))
+    const querySnapshot = await getDocs(q)
+
+    querySnapshot.forEach(post => {
       posts = [...posts, {
         title: post.data().title,
-        imageRef: post.data().imageRef,
+        rawRef: post.data().rawRef,
+        editRef: post.data().editRef,
         timestamp: post.data().timestamp,
         account: post.data().account,
       }]
     })
-    console.log(posts)
   })
 </script>
 
 <UploadModal />
 
-{#each sortedPosts as post}
-  <Post title={post.title} imageRef={post.imageRef} likes={post.likes} dislikes={post.dislikes} account={post.account}/>
+{#each posts as post}
+  <Post title={post.title} rawRef={post.rawRef} editRef={post.editRef} account={post.account}/>
 {/each}

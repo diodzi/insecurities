@@ -1,16 +1,27 @@
 <script>
   export let title = ''
-  export let imageRef = ''
-  export let likes = 0
-  export let dislikes = 0
+  export let rawRef = ''
+  export let editRef = ''
   export let account = ''
+
+  let display = rawRef
+
+  function displayRAW() {
+    console.log('raw: ' + rawRef)
+    display = rawRef
+  }
+
+  function displayEDIT() {
+    console.log(editRef)
+    display = editRef
+  }
 </script>
 
 <main>
   <span id='title'><span id='user'>{account.substring(0, account.indexOf('@'))}</span>/{title}</span>
-  <img src={imageRef} alt="post" />
-  likes: {likes}
-  dislikes: {dislikes}
+  <img src={display} alt="post" />
+  <button on:click={displayRAW}>RAW</button>
+  <button on:click={displayEDIT}>EDIT</button>
 </main>
 
 <style>
