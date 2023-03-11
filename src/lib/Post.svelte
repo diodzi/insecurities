@@ -18,10 +18,15 @@
 </script>
 
 <main>
-  <span id='title'><span id='user'>{account.substring(0, account.indexOf('@'))}</span>/{title}</span>
+  <span id="title"
+    ><span id="user">{account.substring(0, account.indexOf('@'))}</span
+    >/{title}</span
+  >
   <img src={display} alt="post" />
-  <button on:click={displayRAW}>RAW</button>
-  <button on:click={displayEDIT}>EDIT</button>
+  <div id="buttons">
+    <button on:click={displayRAW}>RAW</button>
+    <button on:click={displayEDIT}>EDIT</button>
+  </div>
 </main>
 
 <style>
@@ -30,7 +35,6 @@
     display: block;
     place-items: left;
   }
-
 
   #title {
     font-weight: 1.5rem;
