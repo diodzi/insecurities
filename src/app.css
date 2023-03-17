@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  font-family: 'Space Mono';
+  box-sizing: border-box;
+}
+
 main {
   display: grid;
   place-items: center;
@@ -7,9 +14,28 @@ main {
 
 body {
   margin: 0;
-  background-color: black;
+  background-color: #080808;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
+}
+
+input[type='text'],
+input[type='password'] {
+  padding: 0.5rem;
+  font-family: inherit;
+  border: 0.2rem solid black;
+}
+
+button {
+  font-family: inherit;
+}
+
+label,
+button {
+  padding: 0.5rem;
+  color: black;
+  background-color: #baffe1;
+  border: 0.2rem solid white;
 }

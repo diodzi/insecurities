@@ -19,11 +19,16 @@ export const storage = getStorage(app)
 export const auth = getAuth(app)
 
 export const loggedIn = writable(false)
+export const isUploading = writable(false)
+export const openLogInModal = writable(false)
+export const openUserModal = writable(false)
+
+export const userEmail = writable('')
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     loggedIn.set(true)
-    console.log('im in')
+    userEmail.set(user.email)
   } else {
     loggedIn.set(false)
   }
@@ -32,5 +37,6 @@ onAuthStateChanged(auth, (user) => {
 export function logOut() {
   signOut(auth).then(() => {
     alert('logged out')
+    openUserModal.set(false)
   })
 }
